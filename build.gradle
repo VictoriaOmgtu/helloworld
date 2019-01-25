@@ -1,9 +1,22 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
    }
 
 repositories {
     jcenter() 
 }
 mainClassName = 'hello.HelloWorld'
+
+//CheckStyle
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+checkstyle {
+    configFile file("config/checkstyle/checkstyle.xml")
+    toolVersion = '8.16'
+}
